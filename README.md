@@ -83,4 +83,9 @@ permission java.lang.RuntimePermission "modifyThread";
 The code samples below don’t make precautions for securing/hiding access credentials like passwords. While the coding evaluator doesn’t allow use of credential functions, which secure credentials properly, [runtime property functions](https://docs.streamsets.com/portal/datacollector/latest/help/datacollector/UserGuide/Pipeline_Configuration/RuntimeValues.html#concept_fjx_g31_1s) can obfuscate access details and place them outside of pipelines.
 ####Producer
 For Qpid producer, use [Groovy evaluator](https://docs.streamsets.com/portal/datacollector/latest/help/datacollector/UserGuide/Processors/Groovy.html#concept_ldh_sct_gv) processor. Most likely, it will be the last stage of a pipeline and no data processing would occur after it, so put a Trash destination after it in the pipeline layout like in the screenshot below:  
-  
+![pipeline framgent with Groovy for qpid producer](qpid_producer.png)
+
+The code below assumes that data to be  sent to the AMQP destination is stored in the incoming records in the field *amqpOut*. Use Expression Evaluator or Field Renamer processors to achieve that.
+
+In the Groovy evaluator configuration, replace the default code with the following (text in <angle brackets> will have to be changed):
+
