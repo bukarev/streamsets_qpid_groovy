@@ -91,5 +91,12 @@ In the Groovy evaluator configuration, replace the default code with the code fr
 
 #### Consumer
 The consumer pipeline should start from Groovy Scripting origin:
-!()[].
+!(pipeline framgment with Groovy scripting origin)[qpid_consumer.png]
+
+The code below places the data received from the AMQP destination in the outgoing records in the field *amqpIn* (you can change it in the code). Keep that in mind when working with the data downstream.
+Incoming message is read as text only; it’s suggested to do subsequent parsing in the downstream stages.
+
+In the Groovy evaluator configuration, replace the default code with the code from the file groovy_qpid_consume.groovy -- you will need to edit the texts in <angle brackets> acordingly to your Qpid server config. You may want to use ${runtime.conf} EL-function to hide sensitive data, but, unfortunately, no credential storage can be used here.
+
+
 
