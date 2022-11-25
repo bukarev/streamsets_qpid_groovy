@@ -87,7 +87,7 @@ For Qpid producer, use [Groovy evaluator](https://docs.streamsets.com/portal/dat
 
 The code below assumes that data to be  sent to the AMQP destination is stored in the incoming records in the field *amqpOut* (you can change it int he code). Use Expression Evaluator or Field Renamer processors to achieve that.
 
-In the Groovy evaluator configuration, replace the default code with the code from the file groovy_qpid_producer.groovy -- you will need to edit the texts in <angle brackets> acordingly to your Qpid server config. You may want to use ${runtime.conf} EL-function to hide sensitive data, but, unfortunately, no credential storage can be used here.
+In the Groovy evaluator configuration, replace the default code with the code from the file groovy_qpid_producer.groovy -- you will need to edit the texts in <angle brackets> acordingly to your Qpid server config. And don't forget to remove angle brackets themselves! You may want to use ${runtime.conf} EL-function to hide sensitive data, but, unfortunately, no credential storage can be used here.
 
 #### Consumer
 The consumer pipeline should start from Groovy Scripting origin:
@@ -96,7 +96,11 @@ The consumer pipeline should start from Groovy Scripting origin:
 The code below places the data received from the AMQP destination in the outgoing records in the field *amqpIn* (you can change it in the code). Keep that in mind when working with the data downstream.
 Incoming message is read as text only; it’s suggested to do subsequent parsing in the downstream stages.
 
-In the Groovy evaluator configuration, replace the default code with the code from the file groovy_qpid_consume.groovy -- you will need to edit the texts in <angle brackets> acordingly to your Qpid server config. You may want to use ${runtime.conf} EL-function to hide sensitive data, but, unfortunately, no credential storage can be used here.
+In the Groovy evaluator configuration, replace the default code with the code from the file groovy_qpid_consume.groovy -- you will need to edit the texts in <angle brackets> acordingly to your Qpid server config. And don't forget to remove angle brackets themselves! You may want to use ${runtime.conf} EL-function to hide sensitive data, but, unfortunately, no credential storage can be used here.
+
+That's it, now you can integrate Streamsets Data Collector with your Qpid message broker!
+
+*Important: Although I developed this code in a Streamsets emplopyee capacity, it is not blessed by Streamsets developers and will not be supported by Streamsets support. I can try and help you on the best effort basis.*
 
 
 
