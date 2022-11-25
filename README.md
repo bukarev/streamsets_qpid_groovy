@@ -85,7 +85,11 @@ The code samples below don’t make precautions for securing/hiding access crede
 For Qpid producer, use [Groovy evaluator](https://docs.streamsets.com/portal/datacollector/latest/help/datacollector/UserGuide/Processors/Groovy.html#concept_ldh_sct_gv) processor. Most likely, it will be the last stage of a pipeline and no data processing would occur after it, so put a Trash destination after it in the pipeline layout like in the screenshot below:  
 ![pipeline framgent with Groovy for qpid producer](qpid_producer.png)
 
-The code below assumes that data to be  sent to the AMQP destination is stored in the incoming records in the field *amqpOut*. Use Expression Evaluator or Field Renamer processors to achieve that.
+The code below assumes that data to be  sent to the AMQP destination is stored in the incoming records in the field *amqpOut* (you can change it int he code). Use Expression Evaluator or Field Renamer processors to achieve that.
 
-In the Groovy evaluator configuration, replace the default code with the following (text in <angle brackets> will have to be changed):
+In the Groovy evaluator configuration, replace the default code with the code from the file groovy_qpid_producer.groovy -- you will need to edit the texts in <angle brackets> acordingly to your Qpid server config. You may want to use ${runtime.conf} EL-function to hide sensitive data, but, unfortunately, no credential storage can be used here.
+
+#### Consumer
+The consumer pipeline should start from Groovy Scripting origin:
+!()[].
 
